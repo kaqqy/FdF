@@ -6,7 +6,7 @@
 #    By: jshi <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/21 09:52:26 by jshi              #+#    #+#              #
-#    Updated: 2016/11/15 11:29:17 by jshi             ###   ########.fr        #
+#    Updated: 2016/11/21 20:37:14 by jshi             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ LIBFT_FUNC = memset bzero memcpy memccpy memmove memchr memcmp strlen \
 				 putchar_fd putstr_fd putendl_fd putnbr_fd lstnew lstdelone \
 				 lstdel lstadd lstiter lstmap numdiv isprime swap qsort sqrt \
 				 ln primearr factorial strarrdel arrnew arradd ptrarrnew \
-				 ptrarradd
+				 ptrarradd is_int
 LIBFT_FILES = $(addprefix ft_,$(LIBFT_FUNC)) get_next_line
 PRINTF_FILES = ft_printf parse_conversion ft_itoa_base concat utility wchar \
 			   print_integer print_string print_char print_float get_float \

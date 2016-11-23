@@ -6,7 +6,7 @@
 /*   By: jshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/21 09:50:00 by jshi              #+#    #+#             */
-/*   Updated: 2016/11/17 22:21:40 by jshi             ###   ########.fr       */
+/*   Updated: 2016/11/21 20:37:28 by jshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,6 @@ int				*ft_arrnew(void);
 void			ft_arradd(int **arr, int num);
 void			**ft_ptrarrnew(void);
 void			ft_ptrarradd(void ***arr, void *addr, int *size);
+int				ft_is_int(char *str);
 int				get_next_line(const int fd, char **line);
 #endif
