@@ -6,7 +6,7 @@
 /*   By: jshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 20:22:09 by jshi              #+#    #+#             */
-/*   Updated: 2016/11/22 03:41:00 by jshi             ###   ########.fr       */
+/*   Updated: 2016/11/24 21:36:30 by jshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,12 @@ void	exit_prog(t_env *env, char *msg)
 			free(env->pts[i]);
 	}
 	free(env->pts);
+	if (env->img)
+		mlx_destroy_image(env->mlx, env->img);
+	if (env->win)
+		mlx_destroy_window(env->mlx, env->win);
 	free(env->mlx);
-	free(env->win);
 	get_next_line(0, NULL);
 	ft_putstr_fd(msg, 2);
-	exit(0);
+	exit(1);
 }

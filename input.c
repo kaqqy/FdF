@@ -6,7 +6,7 @@
 /*   By: jshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 17:59:17 by jshi              #+#    #+#             */
-/*   Updated: 2016/11/23 03:39:16 by jshi             ###   ########.fr       */
+/*   Updated: 2016/11/24 21:06:24 by jshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ static char	**read_file(t_env *env, int argc, char **argv)
 		ft_ptrarradd((void***)&input, ft_strdup(line), &env->wid);
 		free(line);
 	}
+	if (!env->wid)
+		exit_prog(env, "Error: File is empty\n");
 	if (ret < 0)
 		exit_prog(env, "Error: Can't read file\n");
 	ft_ptrarradd((void***)&input, NULL, &env->wid);
@@ -86,10 +88,9 @@ static void	add_pts(t_env *env, int **nums)
 	int		i;
 	int		j;
 
-	i = 0;
-	while (i < env->wid)
-		ft_ptrarradd((void***)&env->pts, (t_pt*)malloc(sizeof(**env->pts) *
-					env->len), &i);
+	i = -1;
+	while (++i < env->wid)
+		env->pts[i] = (t_pt*)malloc(sizeof(**env->pts) * env->len);
 	i = -1;
 	while (++i < env->wid)
 		if (!env->pts[i])
@@ -99,8 +100,8 @@ static void	add_pts(t_env *env, int **nums)
 	{
 		while (++j < env->len)
 		{
-			env->pts[i][j].x = i;
-			env->pts[i][j].y = j;
+			env->pts[i][j].x = j;
+			env->pts[i][j].y = i;
 			env->pts[i][j].z = nums[i][j];
 		}
 	}
@@ -116,11 +117,12 @@ void		get_map(t_env *env, int argc, char **argv)
 
 	env->mlx = NULL;
 	env->win = NULL;
+	env->img = NULL;
 	env->pts = NULL;
 	env->len = 0;
 	env->wid = 0;
 	nums = str_to_int_arr(strsplit_arr(read_file(env, argc, argv), env), env);
-	if (!(env->pts = (t_pt**)ft_ptrarrnew()))
+	if (!(env->pts = (t_pt**)malloc(sizeof(*env->pts) * env->wid)))
 		exit_prog(env, "Error: Malloc failed for variable pts\n");
 	add_pts(env, nums);
 }

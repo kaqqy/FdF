@@ -6,7 +6,7 @@
 /*   By: jshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 01:32:33 by jshi              #+#    #+#             */
-/*   Updated: 2016/11/23 03:35:19 by jshi             ###   ########.fr       */
+/*   Updated: 2016/11/23 22:58:27 by jshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int			**str_to_int_arr(char ***ss, t_env *env)
 	int		i;
 	int		j;
 
+	if (!env->len)
+		exit_stia(ss, env, NULL, "Error: Lines are empty\n");
 	if (!(nums = (int**)malloc(sizeof(*nums) * env->wid)))
 		exit_stia(ss, env, nums, "Error: Malloc failed for variable nums\n");
 	i = -1;

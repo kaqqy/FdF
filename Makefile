@@ -6,13 +6,13 @@
 #    By: jshi <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/21 15:17:30 by jshi              #+#    #+#              #
-#    Updated: 2016/11/23 01:33:25 by jshi             ###   ########.fr        #
+#    Updated: 2016/11/25 18:35:15 by jshi             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-FILES = main input input2 exit
+FILES = main input input2 exit config_pts draw_map handle_hooks transform
 SRC_FILES = $(addsuffix .c,$(FILES))
 OBJ_FILES = $(addsuffix .o,$(FILES))
 
