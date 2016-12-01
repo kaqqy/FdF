@@ -6,7 +6,7 @@
 /*   By: jshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 23:09:38 by jshi              #+#    #+#             */
-/*   Updated: 2016/11/24 02:00:45 by jshi             ###   ########.fr       */
+/*   Updated: 2016/12/01 03:14:44 by jshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,76 @@ static void	transform_map(t_env *env)
 	env->center.z = 0;
 }
 
+static void	scale_height(t_env *env)
+{
+	int		i;
+	int		j;
+	double	min;
+	double	max;
+
+	min = env->pts[0][0].z;
+	max = env->pts[0][0].z;
+	i = -1;
+	while (++i < env->wid)
+	{
+		j = -1;
+		while (++j < env->len)
+		{
+			if (env->pts[i][j].z < min)
+				min = env->pts[i][j].z;
+			if (env->pts[i][j].z > max)
+				max = env->pts[i][j].z;
+		}
+	}
+	if (max - min > 100.0 && (i = -1))
+		while (++i < env->wid && (j = -1))
+			while (++j < env->len)
+				env->pts[i][j].z *= 100.0 / (max - min);
+}
+
+static void	set_loc(t_env *env)
+{
+	int		i;
+	int		j;
+	double	min;
+	double	max;
+
+	min = env->pts[0][0].z;
+	max = env->pts[0][0].z;
+	i = -1;
+	while (++i < env->wid)
+	{
+		j = -1;
+		while (++j < env->len)
+		{
+			if (env->pts[i][j].z < min)
+				min = env->pts[i][j].z;
+			if (env->pts[i][j].z > max)
+				max = env->pts[i][j].z;
+		}
+	}
+	i = -1;
+	while (++i < env->wid && (j = -1))
+		while (++j < env->len)
+			env->pts[i][j].w = (max == min) ? 0.0 :
+				(env->pts[i][j].z - min) / (max - min);
+}
+
 void		config_pts(t_env *env)
 {
 	set_center(env);
 	transform_map(env);
+	scale_height(env);
+	set_loc(env);
+	env->x_axis.x = 1;
+	env->x_axis.y = 0;
+	env->x_axis.z = 0;
+	env->y_axis.x = 0;
+	env->y_axis.y = 1;
+	env->y_axis.z = 0;
+	env->z_axis.x = 0;
+	env->z_axis.y = 0;
+	env->z_axis.z = 1;
+	rotate_z_all(env, M_PI / 4);
+	rotate_x_all(env, atan(sqrt(2)));
 }

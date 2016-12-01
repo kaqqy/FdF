@@ -6,7 +6,7 @@
 /*   By: jshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 20:22:09 by jshi              #+#    #+#             */
-/*   Updated: 2016/11/24 21:36:30 by jshi             ###   ########.fr       */
+/*   Updated: 2016/12/01 00:16:27 by jshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,19 @@ void	exit_prog(t_env *env, char *msg)
 {
 	int		i;
 
-	if (!env)
-		exit(0);
+	env ? 0 : exit(1);
 	if (env->pts)
 	{
 		i = -1;
 		while (++i < env->wid)
 			free(env->pts[i]);
 	}
+	if (env->cpts && (i = -1))
+		while (++i < env->wid)
+			free(env->cpts[i]);
 	free(env->pts);
+	free(env->cpts);
+	free(env->colors);
 	if (env->img)
 		mlx_destroy_image(env->mlx, env->img);
 	if (env->win)
@@ -32,5 +36,5 @@ void	exit_prog(t_env *env, char *msg)
 	free(env->mlx);
 	get_next_line(0, NULL);
 	ft_putstr_fd(msg, 2);
-	exit(1);
+	*msg ? exit(1) : exit(0);
 }

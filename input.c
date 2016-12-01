@@ -6,7 +6,7 @@
 /*   By: jshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 17:59:17 by jshi              #+#    #+#             */
-/*   Updated: 2016/11/24 21:06:24 by jshi             ###   ########.fr       */
+/*   Updated: 2016/12/01 01:32:26 by jshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ static char	**read_file(t_env *env, int argc, char **argv)
 	char	**input;
 	char	*line;
 
-	if (argc != 2)
-		exit_prog(env, "Usage: ./fdf sourcefile\n");
+	if (argc < 2)
+		exit_prog(env, "Usage: ./fdf sourcefile colors\n");
 	if ((fd = open(argv[1], O_RDONLY)) < 0)
 		exit_prog(env, "Error: Can't open file\n");
 	if (!(input = (char**)ft_ptrarrnew()))
@@ -119,10 +119,16 @@ void		get_map(t_env *env, int argc, char **argv)
 	env->win = NULL;
 	env->img = NULL;
 	env->pts = NULL;
+	env->cpts = NULL;
+	env->colors = NULL;
 	env->len = 0;
 	env->wid = 0;
+	env->drag = 0;
+	env->hidden = 1;
+	env->key = -1;
 	nums = str_to_int_arr(strsplit_arr(read_file(env, argc, argv), env), env);
 	if (!(env->pts = (t_pt**)malloc(sizeof(*env->pts) * env->wid)))
 		exit_prog(env, "Error: Malloc failed for variable pts\n");
 	add_pts(env, nums);
+	get_colors(env, argc, argv);
 }
