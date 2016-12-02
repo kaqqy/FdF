@@ -6,14 +6,14 @@
 #    By: jshi <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/21 15:17:30 by jshi              #+#    #+#              #
-#    Updated: 2016/11/29 22:12:41 by jshi             ###   ########.fr        #
+#    Updated: 2016/12/01 19:35:48 by jshi             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-FILES = main input input2 exit config_pts draw_map draw_triangle handle_hooks \
-		transform transform_all
+FILES = main input input2 exit config_pts draw_line draw_map draw_triangle \
+		handle_hooks handle_hooks2 transform transform_all
 SRC_FILES = $(addsuffix .c,$(FILES))
 OBJ_FILES = $(addsuffix .o,$(FILES))
 
