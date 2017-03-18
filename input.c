@@ -6,7 +6,7 @@
 /*   By: jshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 17:59:17 by jshi              #+#    #+#             */
-/*   Updated: 2016/12/01 01:32:26 by jshi             ###   ########.fr       */
+/*   Updated: 2017/02/17 18:43:26 by jshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ static char	***strsplit_arr(char **input, t_env *env)
 		{
 			if (!ss[i][j] || ss[i][env->len])
 				exit_ss_arr(input, env, ss, "Error: Lines differ in length\n");
-			if (!ft_is_int(ss[i][j]))
-				exit_ss_arr(input, env, ss, "Error: Input isn't an integer\n");
+//			if (!ft_is_int(ss[i][j]))
+//				exit_ss_arr(input, env, ss, "Error: Input isn't an integer\n");
 		}
 	}
 	ft_strarrdel(&input);
@@ -74,6 +74,8 @@ static char	**read_file(t_env *env, int argc, char **argv)
 		ft_ptrarradd((void***)&input, ft_strdup(line), &env->wid);
 		free(line);
 	}
+	if (close(fd) == -1)
+		exit_prog(env, "Error: Can't close file\n");
 	if (!env->wid)
 		exit_prog(env, "Error: File is empty\n");
 	if (ret < 0)

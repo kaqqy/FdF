@@ -6,7 +6,7 @@
 /*   By: jshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 02:08:29 by jshi              #+#    #+#             */
-/*   Updated: 2016/12/01 19:54:49 by jshi             ###   ########.fr       */
+/*   Updated: 2017/01/31 19:23:25 by jshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ static void	draw_lines(t_env *env, int ow, int ol, int i)
 					&env->pts[i + 1 - ow][j + ol]);
 			draw_line(env, &env->pts[i + 1 - ow][j + 1 - ol],
 					&env->pts[i + ow][j + 1 - ol]);
+//			draw_line(env, &env->pts[i + 1 - ow][j + 1 - ol],
+//					&env->pts[i + ow][j + ol]);
 			j += 2 * ol - 1;
 		}
 		i += 2 * ow - 1;

@@ -6,7 +6,7 @@
 /*   By: jshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 23:09:38 by jshi              #+#    #+#             */
-/*   Updated: 2016/12/01 03:14:44 by jshi             ###   ########.fr       */
+/*   Updated: 2017/01/26 01:32:48 by jshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,10 @@ static void	scale_height(t_env *env)
 				max = env->pts[i][j].z;
 		}
 	}
-	if (max - min > 100.0 && (i = -1))
+	if (max - min > 200.0 && (i = -1))
 		while (++i < env->wid && (j = -1))
 			while (++j < env->len)
-				env->pts[i][j].z *= 100.0 / (max - min);
+				env->pts[i][j].z *= 200.0 / (max - min);
 }
 
 static void	set_loc(t_env *env)

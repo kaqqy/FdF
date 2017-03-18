@@ -1,0 +1,5 @@
+type "./fdf maps/t2.fdf 0x0000ff 0x00ff00 0xa52a2a 0xffffff 0xffffff" for nice landscape
+scale height function changed max height from 100 to 200
+hidden surfaces color can be changed in draw triangle
+lines 57-58 in draw_map can be removed for no extra line
+input handling now doesn't check for valid integers

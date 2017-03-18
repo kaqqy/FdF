@@ -6,7 +6,7 @@
 /*   By: jshi <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/29 21:49:50 by jshi              #+#    #+#             */
-/*   Updated: 2016/11/30 20:30:02 by jshi             ###   ########.fr       */
+/*   Updated: 2017/02/09 15:33:12 by jshi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	fill_points(t_env *env, double x, double y1, double y2)
 	y2 = floor(y2);
 	while (y1 <= y2)
 	{
-		draw_point(env, x, y1, 0);
+		draw_point(env, x, y1, 0x000000);
 		y1 += 1.0;
 	}
 }
