@@ -6,7 +6,7 @@
 #    By: jshi <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/21 15:17:30 by jshi              #+#    #+#              #
-#    Updated: 2016/12/01 19:35:48 by jshi             ###   ########.fr        #
+#    Updated: 2017/04/03 23:40:20 by jshi             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ MLX_HDR = -I$(MLX_PATH)
 HDR_PATH = .
 HDR = -I$(HDR_PATH)
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -O3
 
 
 .PHONY: all clean fclean re
@@ -38,7 +38,7 @@ CFLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(OBJ_FILES) $(LIBFT) $(MLX)
-	gcc -o $(NAME) $(OBJ_FILES) $(LIBFT_LINK) -lft $(MLX_LINK) -lmlx \
+	gcc $(CFLAGS) -o $(NAME) $(OBJ_FILES) $(LIBFT_LINK) -lft $(MLX_LINK) -lmlx \
 		-framework OpenGL -framework AppKit
 
 %.o: %.c
